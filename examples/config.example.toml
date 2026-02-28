@@ -1,0 +1,7 @@
+root_url = "https://example.com"
+depth = 3
+max_pages = 50
+headless = true
+ai_analysis = false
+output_dir = "./report"
+timeout_ms = 10000

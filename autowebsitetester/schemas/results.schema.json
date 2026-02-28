@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AutoWebsiteTester Results",
+  "type": "object",
+  "required": [
+    "root_url",
+    "visited_urls",
+    "actions",
+    "failures",
+    "started_at",
+    "finished_at",
+    "output_dir"
+  ],
+  "properties": {
+    "root_url": {"type": "string", "format": "uri"},
+    "visited_urls": {"type": "array", "items": {"type": "string", "format": "uri"}},
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["page_url", "action_type", "target"],
+        "properties": {
+          "page_url": {"type": "string"},
+          "action_type": {"type": "string"},
+          "target": {"type": "string"},
+          "detail": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "message", "page_url", "category", "severity"],
+        "properties": {
+          "title": {"type": "string"},
+          "message": {"type": "string"},
+          "page_url": {"type": "string"},
+          "category": {"type": "string"},
+          "stack_trace": {"type": ["string", "null"]},
+          "reproduction_steps": {"type": "array", "items": {"type": "string"}},
+          "severity": {"enum": ["P0", "P1", "P2", "P3"]}
+        }
+      }
+    },
+    "started_at": {"type": "string", "format": "date-time"},
+    "finished_at": {"type": "string", "format": "date-time"},
+    "output_dir": {"type": "string"}
+  }
+}
