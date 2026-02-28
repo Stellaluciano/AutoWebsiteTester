@@ -56,7 +56,11 @@ class ScanRunner:
                             ]
                     failures.extend(local_failures)
 
-        triaged = self.triage.group_failures(failures)
+        triaged = self.triage.group_failures(
+            failures,
+            actions=actions,
+            predicate_builder=lambda bug: self.executor.build_bug_predicate(bug.page_url, bug.message),
+        )
         finished_at = datetime.now(tz=timezone.utc)
         result = ScanResult(
             root_url=self.config.root_url,

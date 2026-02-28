@@ -32,6 +32,19 @@ Manual website QA is slow and inconsistent. AutoWebsiteTester automates explorat
   - `report.html`
   - `results.json`
 
+
+## Advanced Algorithms
+
+### Coverage-Guided Exploration
+
+The navigator now computes page-state fingerprints and action novelty to prioritize interactions that maximize new coverage.
+A bandit-style strategy (novelty + exploration bonus) reduces redundant crawling and discovers unique site states faster.
+
+### Minimal Reproduction Path
+
+Before finalizing bug reports, the triage stage runs delta debugging (`ddmin`) on action traces to find the smallest sequence that still reproduces a failure.
+This produces compact, high-signal reproduction steps that are easier for developers to run and debug.
+
 ## Quick start
 
 ### 1. Install
@@ -119,6 +132,9 @@ autowebsitetester/
     oracle.py
     triage.py
     reporter.py
+  algorithms/
+    coverage_guided_exploration.py
+    ddmin_min_repro.py
   report/
     render_md.py
     render_html.py
@@ -128,6 +144,10 @@ examples/
   config.example.toml
 tests/
   test_triage.py
+  test_coverage_exploration.py
+  test_ddmin.py
+benchmarks/
+  exploration_metrics.py
 ```
 
 ## Notes
