@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autowebsitetester"
+version = "0.1.0"
+description = "AI-powered QA engineer for automatic website exploration and bug reporting"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "playwright>=1.44.0",
+  "typer>=0.12.3",
+]
+
+[project.optional-dependencies]
+ai = ["openai>=1.40.0"]
+dev = ["pytest>=8.2.0", "pytest-asyncio>=0.23.7"]
+
+[project.scripts]
+autowebsitetester = "autowebsitetester.cli:app"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
